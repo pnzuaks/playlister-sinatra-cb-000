@@ -45,7 +45,6 @@ class SongsController < ApplicationController
     @song.save
 
 
-
     # @song.genres.clear
     # @song.genres = params[:song][:genres]
     # @song.save
