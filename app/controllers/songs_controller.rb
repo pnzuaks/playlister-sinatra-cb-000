@@ -40,15 +40,21 @@ class SongsController < ApplicationController
     @song = Song.find_by_slug(params[:slug])
     @song.update(params[:song])
     @song.artist = Artist.find_or_create_by(name: params[:artist][:name])
-    @song.genres.clear
-    @song.genres = params[:song][:genres]
-    @song.save
 
-    genres.each do |genre|
-      @song.genres << Genre.find(genre)
-    end
+    @song.genre_ids = params[:genres]
+    @song
 
-    @song.save
+
+
+    # @song.genres.clear
+    # @song.genres = params[:song][:genres]
+    # @song.save
+    #
+    # genres.each do |genre|
+    #   @song.genres << Genre.find(genre)
+    # end
+    #
+    # @song.save
     flash[:message] = "Successfully updated song."
     redirect to "songs/#{song.slug}"
     # erb :'/songs/show', locals: {message: "Successfully updated song."}
